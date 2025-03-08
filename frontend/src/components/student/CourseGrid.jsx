@@ -8,7 +8,6 @@ const CourseGrid = () => {
     const navigate = useNavigate()
     const fetchCourses = async () => {
         const { data } = await fetchInstructorCourseListService();
-        console.log(data);
         setCourses(data);
     };
 

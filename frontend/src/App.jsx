@@ -13,6 +13,7 @@ import StudentHomePage from "./pages/StudentHomePage";
 import CourceDetail from "./pages/CourceDetail";
 import PaypalPaymentReturnPage from "./pages/PaypalPaymentReturnPage";
 import StudentCourcePage from "./pages/StudentCourcePage";
+import LecturesPage from "./pages/LecturesPage";
 function App() {
   const { auth } = useContext(AuthContext)
   return (
@@ -72,6 +73,16 @@ function App() {
             element={
               <ProtectedRoute
                 element={<StudentCourcePage />}
+                authenticated={auth?.authenticate}
+                user={auth?.user}
+              />
+            }
+          />
+          <Route
+            path="/student-courses/learn/:id"
+            element={
+              <ProtectedRoute
+                element={<LecturesPage />}
                 authenticated={auth?.authenticate}
                 user={auth?.user}
               />

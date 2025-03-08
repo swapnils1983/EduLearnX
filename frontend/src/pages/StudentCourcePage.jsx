@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CourseCard from "@/components/student/CourseCard";
 import NavigationMenu from "@/components/student/NavigationMenu";
+import { AuthContext } from "@/context/AuthContext";
+import { fetchStudentBoughtCoursesService } from "@/services";
 
-const courses = [
-    {
-        id: 1,
-        title: "Introduction to Web Development",
-        description: "Learn the fundamentals of web development including HTML, CSS, and JavaScript.",
-        image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-        progress: 65,
-        category: "Development",
-        duration: "8 weeks",
-    }
-];
+// const courses = [
+//     {
+//         id: 1,
+//         title: "Introduction to Web Development",
+//         description: "Learn the fundamentals of web development including HTML, CSS, and JavaScript.",
+//         image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+//         progress: 65,
+//         category: "Development",
+//         duration: "8 weeks",
+//     }
+// ];
+
+// const [courses, setCources] = useState([])
+// fetchStudentBoughtCoursesService(studentId)
 
 const StudentCourcePage = () => {
+    const { auth } = useContext(AuthContext);
+    const [courses, setCourses] = useState([]);
+
+    async function fetchStudentCources() {
+        const { data } = await fetchStudentBoughtCoursesService(auth.user._id)
+
+        setCourses(data)
+    }
+    useEffect(() => {
+        fetchStudentCources()
+    }, [])
     return (
         <div className="min-h-screen bg-secondary/30 flex">
 
@@ -34,7 +50,7 @@ const StudentCourcePage = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {courses.map((course) => (
-                        <CourseCard key={course.id} {...course} />
+                        <CourseCard key={course.courseId} {...course} />
                     ))}
                 </div>
 

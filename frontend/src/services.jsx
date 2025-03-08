@@ -70,7 +70,7 @@ export async function captureAndFinalizePaymentService(
 
 export async function fetchStudentBoughtCoursesService(studentId) {
   const { data } = await axiosInstance.get(
-    `/student/courses-bought/get/${studentId}`
+    `/student/course/get/${studentId}`
   );
 
   return data;

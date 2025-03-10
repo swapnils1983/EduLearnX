@@ -42,23 +42,6 @@ const CourseContent = ({ courses }) => {
                     </div>
                     <div className="space-y-6">
                         <h2 className="text-2xl font-bold">What You'll Learn</h2>
-                        {/* <ul className="space-y-4">
-                            {[
-                                "Advanced React Hooks and Custom Hooks",
-                                "TypeScript Best Practices",
-                                "State Management Patterns",
-                                "Performance Optimization",
-                                "Testing Strategies",
-                                "Real-world Project Architecture",
-                            ].map((item, index) => (
-                                <li key={index} className="flex items-center gap-3">
-                                    <span className="flex items-center justify-center w-6 h-6 text-xs font-medium text-primary bg-primary/10 rounded-full">
-                                        {index + 1}
-                                    </span>
-                                    <span>{item}</span>
-                                </li>
-                            ))}
-                        </ul> */}
                         {courses?.objectives && (
                             <ul className="list-disc pl-5">
                                 {courses.objectives.split('.').map((point, index) =>

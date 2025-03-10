@@ -75,3 +75,9 @@ export async function fetchStudentBoughtCoursesService(studentId) {
 
   return data;
 }
+
+export async function fetchInstructorStatsService(instructorId) {
+  const { data } = await axiosInstance.get(`/instructor/course/stats/:${instructorId}`)
+
+  return data;
+}

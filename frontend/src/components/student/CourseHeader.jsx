@@ -38,27 +38,6 @@ const CourseHeader = ({ courses }) => {
         }
     }
 
-    // useEffect(() => {
-    //     if (displayCurrentVideoFreePreview !== null) setShowFreePreviewDialog(true);
-    // }, [displayCurrentVideoFreePreview]);
-
-    // useEffect(() => {
-    //     if (currentCourseDetailsId !== null) fetchStudentViewCourseDetails();
-    // }, [currentCourseDetailsId]);
-
-    // useEffect(() => {
-    //     if (id) setCurrentCourseDetailsId(id);
-    // }, [id]);
-
-    // useEffect(() => {
-    //     if (!location.pathname.includes("course/details"))
-    //         setStudentViewCourseDetails(null),
-    //             setCurrentCourseDetailsId(null),
-    //             setCoursePurchaseId(null);
-    // }, [location.pathname]);
-
-    // if (loadingState) return <Skeleton />;
-
     if (approvalUrl !== "") {
         window.location.href = approvalUrl;
     }

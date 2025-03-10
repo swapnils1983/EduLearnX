@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
-const SignUp = () => {
+const SignUp = ({ switchToSignIn }) => {
     const {
         register,
         handleSubmit,
@@ -28,10 +28,9 @@ const SignUp = () => {
 
         try {
             const res = await handleRegisterUser(formData);
-
             if (res?.success) {
                 toast.success("Sign up successful!");
-                // navigate("/dashboard");
+                switchToSignIn();
             } else {
                 toast.error(res?.message || "Sign up unsuccessful!");
             }
@@ -56,7 +55,6 @@ const SignUp = () => {
 
                 <AuthCard title="Sign Up">
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                        {/* Full Name */}
                         <div className="space-y-2">
                             <Label htmlFor="name">Full Name</Label>
                             <div className="relative">
@@ -77,7 +75,6 @@ const SignUp = () => {
                             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                         </div>
 
-                        {/* Email */}
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
                             <div className="relative">
@@ -98,7 +95,6 @@ const SignUp = () => {
                             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                         </div>
 
-                        {/* Password */}
                         <div className="space-y-2">
                             <Label htmlFor="password">Password</Label>
                             <div className="relative">
@@ -120,7 +116,6 @@ const SignUp = () => {
                             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                         </div>
 
-                        {/* Role Selection */}
                         <div className="space-y-2">
                             <Label htmlFor="role">Sign Up As</Label>
                             <div className="flex space-x-4">
@@ -144,7 +139,6 @@ const SignUp = () => {
                             {errors.role && <p className="text-red-500 text-sm">{errors.role.message}</p>}
                         </div>
 
-                        {/* Submit Button */}
                         <Button type="submit" className="w-full" disabled={isSubmitting}>
                             {isSubmitting ? "Creating Account..." : "Sign Up"}
                         </Button>

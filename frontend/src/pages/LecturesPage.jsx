@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Calendar, Clock, ChevronRight } from 'lucide-react';
+import { Calendar, Clock, ChevronRight, Play } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -20,7 +20,6 @@ const LecturesPage = () => {
                 const { data } = await fethCourceDetailById(id);
                 setLectures(data.curriculum);
 
-                // Set first lecture as default
                 setActiveLecture(data.curriculum[0] || null);
             } catch (error) {
                 console.error("Error fetching lectures:", error);
@@ -35,14 +34,11 @@ const LecturesPage = () => {
 
     return (
         <div className="flex flex-col lg:flex-row h-screen">
-            {/* Sidebar */}
             <div className="w-ful">
                 <NavigationMenu />
             </div>
 
-            {/* Main Content */}
             <div className="flex flex-1 flex-col lg:flex-row overflow-auto">
-                {/* Video Section */}
                 <div className="flex-1 p-4 lg:p-6">
                     <div className="max-w-5xl mx-auto">
                         {activeLecture ? (
@@ -68,7 +64,6 @@ const LecturesPage = () => {
                     </div>
                 </div>
 
-                {/* Playlist Section */}
                 <div className="w-full lg:w-80 border-t lg:border-l border-border/50 bg-card/30 backdrop-blur-sm">
                     <div className="p-4 border-b border-border/50">
                         <h2 className="font-medium">Course Lectures</h2>
@@ -85,9 +80,10 @@ const LecturesPage = () => {
                                         activeLecture?._id === lecture._id ? "bg-primary/10" : "hover:bg-primary/5"
                                     )}
                                 >
-                                    <div className="relative h-20 aspect-video flex-shrink-0 rounded-md overflow-hidden border border-border/50">
-                                        <ChevronRight className="absolute top-2 left-2 text-white bg-black/50 p-1 rounded-full" />
+                                    <div className="relative h-20 aspect-video flex-shrink-0 rounded-md overflow-hidden border border-border/50 bg-gray-200 flex items-center justify-center">
+                                        <Play className="w-8 h-8 text-gray-500" />
                                     </div>
+
                                     <div className="flex-1 min-w-0">
                                         <h3 className={cn("text-sm mt-1 line-clamp-2 leading-tight",
                                             activeLecture?._id === lecture._id ? "font-medium" : "")}>{lecture.title}</h3>

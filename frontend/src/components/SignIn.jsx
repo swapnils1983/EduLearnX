@@ -19,15 +19,15 @@ const SignIn = ({ role }) => {
 
     const onSubmit = async (data) => {
         const formData = {
-            userEmail: data.email,  // Map frontend `email` to backend `userEmail`
-            userName: data.userName, // Ensure userName is collected
+            userEmail: data.email,
+            userName: data.userName,
             password: data.password
         };
-        console.log("Submitting data:", formData); // Debugging log
+        console.log("Submitting data:", formData);
 
         try {
             const res = await handleLoginUser(formData);
-            console.log("Server Response:", res); // Log response for debugging
+            console.log("Server Response:", res);
 
             if (res?.success) {
                 toast.success("Sign up successful!");
@@ -42,7 +42,7 @@ const SignIn = ({ role }) => {
             }
         } catch (error) {
             console.error("Error during sign-up:", error);
-            console.error("Error details:", error.response?.data); // Log detailed error response
+            console.error("Error details:", error.response?.data);
             toast.error("An error occurred. Please try again.");
         }
     };
@@ -53,12 +53,12 @@ const SignIn = ({ role }) => {
             <div className="w-full max-w-md space-y-8">
                 <div className="text-center">
                     <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
-                        Welcome back, Instructor
+                        Welcome back
                     </h2>
                     <p className="mt-2 text-sm text-gray-600">Continue inspiring minds</p>
                 </div>
 
-                <AuthCard title="Instructor Sign In">
+                <AuthCard title="Sign In">
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>

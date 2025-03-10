@@ -4,20 +4,6 @@ import NavigationMenu from "@/components/student/NavigationMenu";
 import { AuthContext } from "@/context/AuthContext";
 import { fetchStudentBoughtCoursesService } from "@/services";
 
-// const courses = [
-//     {
-//         id: 1,
-//         title: "Introduction to Web Development",
-//         description: "Learn the fundamentals of web development including HTML, CSS, and JavaScript.",
-//         image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-//         progress: 65,
-//         category: "Development",
-//         duration: "8 weeks",
-//     }
-// ];
-
-// const [courses, setCources] = useState([])
-// fetchStudentBoughtCoursesService(studentId)
 
 const StudentCourcePage = () => {
     const { auth } = useContext(AuthContext);

@@ -26,11 +26,6 @@ const CourseCard = (course) => {
                     <span>Date of Purchase:</span>
                     <span>{new Date(course.dateOfPurchase).toLocaleDateString()}</span>
                 </div>
-                <div className="flex justify-between items-center text-sm">
-                    <span>Progress:</span>
-                    <span className="font-medium">{course.progress}%</span>
-                </div>
-                <Progress value={course.progress} className="h-2 rounded-md" />
             </CardContent>
         </Card>
     );

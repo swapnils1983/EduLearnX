@@ -95,9 +95,69 @@ const updateCourseByID = async (req, res) => {
     }
 };
 
+const getInstructorStats = async (req, res) => {
+    try {
+        const { instructorId } = req.params;
+        const id = instructorId.startsWith(":") ? instructorId.substring(1) : instructorId;
+        const courses = await Course.find({ instructorId: id }).sort({ date: -1 });
+
+        if (!courses.length) {
+            return res.status(404).json({
+                success: false,
+                message: "No courses found for this instructor.",
+            });
+        }
+
+        const totalCourses = courses.length;
+        const totalStudents = courses.reduce((acc, course) => acc + course.students.length, 0);
+        const totalEarnings = courses.reduce((acc, course) => {
+            return acc + course.students.reduce((sum, student) => sum + parseFloat(student.paidAmount || 0), 0);
+        }, 0);
+
+        const recentCourses = courses.slice(0, 5).map(course => ({
+            title: course.title,
+            date: course.date,
+            studentsCount: course.students.length
+        }));
+
+        let allStudents = [];
+        courses.forEach(course => {
+            course.students.forEach(student => {
+                allStudents.push({
+                    name: student.studentName,
+                    email: student.studentEmail,
+                    paidAmount: student.paidAmount,
+                    course: course.title,
+                });
+            });
+        });
+
+        const recentStudents = allStudents.slice(-5).reverse();
+
+        res.status(200).json({
+            success: true,
+            stats: {
+                totalCourses,
+                totalStudents,
+                totalEarnings,
+                recentCourses,
+                recentStudents
+            },
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Some error occurred!",
+        });
+    }
+};
+
 module.exports = {
     addNewCourse,
     getAllCourses,
     updateCourseByID,
     getCourseDetailsByID,
+    getInstructorStats
 };

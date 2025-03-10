@@ -1,25 +1,28 @@
 import { AuthContext } from "@/context/AuthContext";
-import { fetchInstructorCourseListService } from "@/services";
-import { Book, Calendar, Home, MessageSquare, Search, Settings, User } from "lucide-react";
+import { Book, Home, LogOut } from "lucide-react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NavigationMenu = () => {
     const navigate = useNavigate();
-    // const { auth } = useContext(AuthContext)
-    // console.log(auth)
+    const { setAuth } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        sessionStorage.removeItem("accessToken");
+
+        setAuth({
+            authenticate: false,
+            user: null
+        });
+
+        navigate("/login");
+    };
+
     const menuItems = [
-        { icon: Home, label: "Dashboard", path: "/" },
+        { icon: Home, label: "Home", path: "/" },
         { icon: Book, label: "My Courses", path: "/student-courses" },
-        // { icon: Calendar, label: "Schedule", path: "/schedule" },
-        { icon: MessageSquare, label: "Messages", path: "/messages" },
-        // { icon: Search, label: "Search", path: "/search" },
-        { icon: Settings, label: "Settings", path: "/settings" },
-        { icon: User, label: "Profile", path: "/profile" },
     ];
 
-    // fetchCources();
-    // console.log(data)
     return (
         <nav className="fixed bottom-0 left-0 w-full md:relative md:w-auto bg-card md:bg-transparent shadow-lg md:shadow-none z-50">
             <div className="flex md:flex-col justify-around md:justify-start p-4 md:p-0 md:space-y-2">
@@ -35,6 +38,15 @@ const NavigationMenu = () => {
                         </span>
                     </button>
                 ))}
+                <button
+                    onClick={handleLogout}
+                    className="flex flex-col md:flex-row items-center md:space-x-3 p-2 md:p-3 rounded-lg hover:bg-red-500 transition-colors duration-200"
+                >
+                    <LogOut className="w-6 h-6 text-soft-text" />
+                    <span className="text-xs md:text-sm mt-1 md:mt-0 text-soft-text">
+                        Logout
+                    </span>
+                </button>
             </div>
         </nav>
     );

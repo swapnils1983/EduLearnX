@@ -24,12 +24,39 @@ const addNewCourse = async (req, res) => {
 
 const getAllCourses = async (req, res) => {
     try {
-        const coursesList = await Course.find({});
+
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        const filter = {};
+        if (req.query.category) {
+            filter.category = req.query.category;
+        }
+        if (req.query.level) {
+            filter.level = req.query.level;
+        }
+
+        const [coursesList, totalCourses] = await Promise.all([
+            Course.find(filter)
+                .skip(skip)
+                .limit(limit)
+                .lean(),
+            Course.countDocuments(filter)
+        ]);
+
+        // const totalCourses = await Course.countDocuments();
 
         res.status(200).json({
             success: true,
             data: coursesList,
+            pagination: {
+                currentPage: page,
+                totalPages: Math.ceil(totalCourses / limit),
+                totalItems: totalCourses
+            }
         });
+
     } catch (e) {
         console.log(e);
         res.status(500).json({
@@ -43,6 +70,7 @@ const getCourseDetailsByID = async (req, res) => {
     try {
         const { id } = req.params;
         const courseDetails = await Course.findById(id);
+
         if (!courseDetails) {
             return res.status(404).json({
                 success: false,

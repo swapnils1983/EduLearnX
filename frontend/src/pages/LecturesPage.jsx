@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { fethCourceDetailById } from '@/services';
-import NavigationMenu from '@/components/student/NavigationMenu';
+import NavigationMenu from '@/components/student/Navbar';
 
 const LecturesPage = () => {
     const { id } = useParams();

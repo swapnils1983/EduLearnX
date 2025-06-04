@@ -22,7 +22,7 @@ function PaypalPaymentReturnPage() {
 
                 if (response?.success) {
                     sessionStorage.removeItem("currentOrderId");
-                    window.location.href = "/student-courses";
+                    window.location.href = "/my-learning";
                 }
             }
 

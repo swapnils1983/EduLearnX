@@ -1,28 +1,35 @@
-import CourseGrid from "@/components/student/CourseGrid";
-import NavigationMenu from "@/components/student/NavigationMenu";
-import WelcomeSection from "@/components/student/WelcomeSection";
+import FeaturedCourses from "@/components/student/FeaturedCourses";
+import Footer from "@/components/student/Footer";
+import Hero from "@/components/student/Hero";
+import Navbar from "@/components/student/Navbar";
+import Reviews from "@/components/student/Reviews";
+import TeacherShowcase from "@/components/student/TeacherShowcase";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext, useEffect } from "react";
 
+const Index = () => {
+    const { auth } = useContext(AuthContext);
+    console.log(auth)
+    useEffect(() => {
+        // Smooth scroll to top when component mounts
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, []);
 
-function StudentHomePage() {
     return (
-        <div className="min-h-screen bg-background">
-            <div className="flex">
-                <div className="hidden md:block w-64 p-6">
-                    <NavigationMenu />
-                </div>
-                <main className="flex-1 p-6 pb-24 md:pb-6 space-y-6 max-w-6xl mx-auto">
-                    <WelcomeSection />
-                    <section>
-                        <h2 className="text-2xl font-semibold mb-6">Courses</h2>
-                        <CourseGrid />
-                    </section>
-                </main>
-            </div>
-            <div className="md:hidden">
-                <NavigationMenu />
-            </div>
+        <div className="min-h-screen bg-white overflow-hidden">
+            <Navbar />
+            <main>
+                <Hero />
+                <FeaturedCourses />
+                <TeacherShowcase />
+                <Reviews />
+            </main>
+            <Footer />
         </div>
     );
-}
+};
 
-export default StudentHomePage;
+export default Index;

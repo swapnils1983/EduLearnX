@@ -60,18 +60,16 @@ const AddNewCourse = () => {
         try {
             let imageUrl = courseData.image;
 
-            // Upload image if a new image is selected
             if (courseData.image instanceof File) {
                 const formData = new FormData();
                 formData.append("file", courseData.image);
                 const uploadRes = await mediaUploadService(formData);
-                imageUrl = uploadRes.url; // Assuming the response contains the image URL
+                imageUrl = uploadRes.url;
             }
 
-            // Prepare final course data
             const finalData = {
                 ...courseData,
-                image: imageUrl, // Use uploaded image URL
+                image: imageUrl,
             };
 
             const res = await addNewCourseService(finalData);

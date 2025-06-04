@@ -1,0 +1,147 @@
+// Mock data for courses
+export const allCoursesData = [
+    {
+        id: 1,
+        title: "UX Design Fundamentals",
+        description: "Learn the core principles of user experience design and create intuitive interfaces.",
+        image: "/placeholder.svg",
+        instructor: "Sarah Johnson",
+        rating: 4.8,
+        students: 2453,
+        duration: "10 weeks",
+        level: "Beginner",
+        category: "Design"
+    },
+    {
+        id: 2,
+        title: "Full-Stack Web Development",
+        description: "Master both front-end and back-end technologies to build complete web applications.",
+        image: "/placeholder.svg",
+        instructor: "Michael Chen",
+        rating: 4.9,
+        students: 3821,
+        duration: "16 weeks",
+        level: "Intermediate",
+        category: "Programming"
+    },
+    {
+        id: 3,
+        title: "Data Science Essentials",
+        description: "Learn data analysis, visualization, and machine learning fundamentals.",
+        image: "/placeholder.svg",
+        instructor: "Emily Rodriguez",
+        rating: 4.7,
+        students: 1987,
+        duration: "12 weeks",
+        level: "Intermediate",
+        category: "Data Science"
+    },
+    {
+        id: 4,
+        title: "Digital Marketing Mastery",
+        description: "Develop comprehensive skills in SEO, content marketing, and social media strategy.",
+        image: "/placeholder.svg",
+        instructor: "James Wilson",
+        rating: 4.6,
+        students: 2145,
+        duration: "8 weeks",
+        level: "All Levels",
+        category: "Marketing"
+    },
+    {
+        id: 5,
+        title: "Mobile App Development with React Native",
+        description: "Build cross-platform mobile applications using React Native framework.",
+        image: "/placeholder.svg",
+        instructor: "Alex Peterson",
+        rating: 4.5,
+        students: 1825,
+        duration: "14 weeks",
+        level: "Intermediate",
+        category: "Programming"
+    },
+    {
+        id: 6,
+        title: "Graphic Design Masterclass",
+        description: "Master the essential tools and techniques for professional graphic design.",
+        image: "/placeholder.svg",
+        instructor: "Olivia Taylor",
+        rating: 4.7,
+        students: 2356,
+        duration: "12 weeks",
+        level: "All Levels",
+        category: "Design"
+    },
+    {
+        id: 7,
+        title: "Advanced JavaScript Concepts",
+        description: "Deep dive into advanced JavaScript concepts like closures, prototypes, and async/await.",
+        image: "/placeholder.svg",
+        instructor: "David Miller",
+        rating: 4.9,
+        students: 1967,
+        duration: "8 weeks",
+        level: "Advanced",
+        category: "Programming"
+    },
+    {
+        id: 8,
+        title: "Business Analytics & Intelligence",
+        description: "Learn to analyze business data and derive actionable insights for decision making.",
+        image: "/placeholder.svg",
+        instructor: "Natalie Wong",
+        rating: 4.7,
+        students: 1532,
+        duration: "10 weeks",
+        level: "Intermediate",
+        category: "Business"
+    },
+    {
+        id: 9,
+        title: "Content Creation for Social Media",
+        description: "Create engaging content for various social media platforms to grow your audience.",
+        image: "/placeholder.svg",
+        instructor: "Ryan Garcia",
+        rating: 4.6,
+        students: 2198,
+        duration: "6 weeks",
+        level: "Beginner",
+        category: "Marketing"
+    },
+    {
+        id: 10,
+        title: "Machine Learning Fundamentals",
+        description: "Introduction to machine learning algorithms and their practical applications.",
+        image: "/placeholder.svg",
+        instructor: "Sophia Lee",
+        rating: 4.8,
+        students: 1876,
+        duration: "14 weeks",
+        level: "Intermediate",
+        category: "Data Science"
+    },
+    {
+        id: 11,
+        title: "Photography Fundamentals",
+        description: "Master camera settings, composition, and lighting for stunning photographs.",
+        image: "/placeholder.svg",
+        instructor: "Thomas Brown",
+        rating: 4.7,
+        students: 3102,
+        duration: "8 weeks",
+        level: "Beginner",
+        category: "Creative"
+    },
+    {
+        id: 12,
+        title: "Project Management Professional",
+        description: "Prepare for the PMP certification and master project management methodologies.",
+        image: "/placeholder.svg",
+        instructor: "Lisa Martinez",
+        rating: 4.8,
+        students: 2541,
+        duration: "12 weeks",
+        level: "Intermediate",
+        category: "Business"
+    }
+];

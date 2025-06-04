@@ -10,6 +10,7 @@ export default function AuthProvider({ children }) {
         authenticate: false,
         user: null
     });
+    const [loading, setLoading] = useState(true);
 
     async function handleRegisterUser(formData) {
         try {
@@ -49,25 +50,39 @@ export default function AuthProvider({ children }) {
             return error.response?.data || { success: false, message: "Something went wrong" };
         }
     }
-
+    async function logout() {
+        sessionStorage.removeItem('accessToken')
+        setAuth({
+            authenticate: false,
+            user: null
+        })
+    }
     async function checkAuth() {
         const { data } = await axiosInstance.get('/auth/check-auth');
         return data;
     }
 
     async function checkAuthUser() {
-        const data = await checkAuth();
-        if (data.success) {
-            setAuth({
-                authenticate: true,
-                user: data.data.user
-            })
-        }
-        else {
+        try {
+            const data = await checkAuth();
+            if (data.success) {
+                setAuth({
+                    authenticate: true,
+                    user: data.data.user,
+                });
+            } else {
+                setAuth({
+                    authenticate: false,
+                    user: null,
+                });
+            }
+        } catch (error) {
             setAuth({
                 authenticate: false,
-                user: null
-            })
+                user: null,
+            });
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -77,6 +92,8 @@ export default function AuthProvider({ children }) {
     return <AuthContext.Provider value={{
         auth,
         setAuth,
+        loading,
+        logout,
         handleRegisterUser,
         handleLoginUser,
         checkAuth,

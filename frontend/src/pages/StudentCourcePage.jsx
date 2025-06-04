@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import CourseCard from "@/components/student/CourseCard";
-import NavigationMenu from "@/components/student/NavigationMenu";
+import NavigationMenu from "@/components/student/Navbar";
 import { AuthContext } from "@/context/AuthContext";
 import { fetchStudentBoughtCoursesService } from "@/services";
 

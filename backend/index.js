@@ -27,6 +27,8 @@ app.use("/media", require('./routes/mediaRoutes'));
 app.use("/instructor/course", require('./routes/courceRoutes'));
 app.use("/student/course", require('./routes/studentCourceRoutes'));
 app.use("/student/order", require('./routes/orderRoute'));
+app.use("/progress", require("./routes/progressRoutes"))
+app.use("/recomendation", require("./routes/recommendationRoutes"))
 
 
 app.listen(PORT, () => {

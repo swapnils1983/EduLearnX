@@ -7,6 +7,26 @@ const LectureSchema = new mongoose.Schema({
     freePreview: Boolean,
 });
 
+const RatingSchema = new mongoose.Schema({
+    studentId: String,
+    studentName: String,
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+    },
+});
+
+const CommentSchema = new mongoose.Schema({
+    studentId: String,
+    studentName: String,
+    comment: String,
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+});
+
 const CourseSchema = new mongoose.Schema({
     instructorId: String,
     instructorName: String,
@@ -14,13 +34,12 @@ const CourseSchema = new mongoose.Schema({
     title: String,
     category: String,
     level: String,
-    primaryLanguage: String,
-    subtitle: String,
+    Duration: Number,
+    Prerequisites: String,
     description: String,
     image: String,
-    welcomeMessage: String,
     pricing: Number,
-    objectives: String,
+
     students: [
         {
             studentId: String,
@@ -31,6 +50,8 @@ const CourseSchema = new mongoose.Schema({
     ],
     curriculum: [LectureSchema],
     isPublised: Boolean,
+    ratings: [RatingSchema],
+    comments: [CommentSchema],
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

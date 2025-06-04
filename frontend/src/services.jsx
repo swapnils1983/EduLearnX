@@ -21,8 +21,23 @@ export async function mediaDeleteService(id) {
   return data;
 }
 
-export async function fetchInstructorCourseListService() {
-  const { data } = await axiosInstance.get(`/instructor/course/get`);
+export async function fetchInstructorCourseListService(params = {}) {
+  const { page = 1, limit = 8, category, level } = params;
+
+  const queryParams = new URLSearchParams({
+    page,
+    limit,
+  });
+
+  if (category && category !== "All") {
+    queryParams.append('category', category);
+  }
+
+  if (level && level !== "All Levels") {
+    queryParams.append('level', level);
+  }
+
+  const { data } = await axiosInstance.get(`/instructor/course/get?${queryParams.toString()}`);
 
   return data;
 }
@@ -80,4 +95,21 @@ export async function fetchInstructorStatsService(instructorId) {
   const { data } = await axiosInstance.get(`/instructor/course/stats/:${instructorId}`)
 
   return data;
+}
+
+
+export const updateStudentProgressService = (courseId, lectureId, studentId) => {
+  return axiosInstance.post(`/progress`, {
+    courseId,
+    lectureId,
+    studentId,
+  });
+};
+
+export const getStudentProgressService = (courseId, studentId) => {
+  return axiosInstance.get(`/progress/${courseId}/${studentId}`);
+};
+
+export const fetchRecomendationService = (title) => {
+  return axiosInstance.post("/recomendation", { title })
 }

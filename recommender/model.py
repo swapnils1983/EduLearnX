@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from bson import ObjectId
 
 # MongoDB connection
-MONGO_URI = "mongodb+srv://swapnilsonawane86547:WG6n5Opy9shMWyzl@cluster0.9u2ma.mongodb.net/?retryWrites=false&connectTimeoutMS=30000"
+MONGO_URI = ""
 client = MongoClient(MONGO_URI)
 db = client["test"]
 collection = db["courses"]

@@ -4,13 +4,11 @@ from sklearn.metrics.pairwise import linear_kernel
 from pymongo import MongoClient
 from bson import ObjectId
 
-# MongoDB connection
 MONGO_URI = "mongodb+srv://swapnilsonawane86547:WG6n5Opy9shMWyzl@cluster0.9u2ma.mongodb.net/?retryWrites=false&connectTimeoutMS=30000"
 client = MongoClient(MONGO_URI)
 db = client["test"]
 collection = db["courses"]
 
-# Utility to convert ObjectId to string recursively
 def convert_objectids(obj):
     if isinstance(obj, list):
         return [convert_objectids(item) for item in obj]
@@ -21,13 +19,11 @@ def convert_objectids(obj):
     else:
         return obj
 
-# Load data
 def get_data():
     data = pd.DataFrame(list(collection.find({"isPublised": True})))
     data['description'] = data['description'].fillna('')
     return data
 
-# Build the TF-IDF model and cosine similarity matrix
 def build_model(data):
     tfidf = TfidfVectorizer(stop_words='english')
     tfidf_matrix = tfidf.fit_transform(data['description'])
@@ -35,7 +31,6 @@ def build_model(data):
     indices = pd.Series(data.index, index=data['title']).drop_duplicates()
     return tfidf_matrix, cosine_sim, indices
 
-# Get recommendations based on course title
 def get_recommendations(title, data, cosine_sim, indices):
     title_lower = title.lower()
     matches = [t for t in indices.index if t.lower() == title_lower]

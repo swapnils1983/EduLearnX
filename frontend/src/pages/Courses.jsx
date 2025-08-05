@@ -197,10 +197,6 @@ const Courses = () => {
                                                     <span className="px-3 py-1 rounded-full bg-edu-secondary/50 text-xs font-medium text-edu-dark/80">
                                                         {course.category}
                                                     </span>
-                                                    {/* <div className="flex items-center">
-                                                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                                                        <span className="ml-1 text-sm font-medium">{course.rating}</span>
-                                                    </div> */}
                                                 </div>
 
                                                 <h3 className="text-xl font-semibold hover:text-edu-primary transition-colors duration-300">

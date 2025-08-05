@@ -11,7 +11,6 @@ const Index = () => {
     const { auth } = useContext(AuthContext);
     console.log(auth)
     useEffect(() => {
-        // Smooth scroll to top when component mounts
         window.scrollTo({
             top: 0,
             behavior: "smooth"
